@@ -6,39 +6,44 @@
     <link rel="icon" type="image/png" href="images/favicon.png" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Alata' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/d87aa24fdc.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>airvnv</title>
 </head>
 
 <body>
-    <nav class="navbar sticky-top navbar-expand-lg border-bottom bg-white shadow-sm justify-content-between navbar-light">
+    <nav
+        class="navbar sticky-top navbar-expand-lg border-bottom bg-white shadow-sm justify-content-between navbar-light">
         <div class="navbar-header  d-inline-block ">
-        <a id="logo" class="navbar-brand mb-0 h1" href="index.html">
-            <p class="h1"> <img src="images/favicon.png" width="35" height="35" class="d-inline-block" alt="" />
-            airvnv</p>
-        </a>
-    </div>
-    <div class="d-flex">
-        <div class="input-group mb-3">
-
-            <select class="custom-select" id="inputGroupSelect01" placeholder="Adicionar Local" aria-label="Adicionar Local">
-              <option selected>Adicionar Local</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-            <input type="text" class="form-control" placeholder="Adicionar as Datas" aria-label="Adicionar as Datas"/>
-            <input id="datepicker" width="270" />
-            <input type="text" class="form-control" placeholder="Insira o número de Hóspedes" aria-label="Insira o número de Hóspedes"/>
-            <div class="input-group-append">
-                <label class="input-group-text" for="inputGroupSelect01">Options</label>
-              </div>
-          </div>
-    </div>
-        <div class="d-flex justify-content-end navbar-nav">       
+            <a id="logo" class="navbar-brand mb-0" href="index.html">
+                <p class="h2"> <img src="images/favicon.png" width="35" height="35" class="d-inline-block" alt="" />
+                    airvnv</p>
+            </a>
+        </div>
+        <div class="d-flex navbar-nav d-inline-block search">
+            <div class="input-group mb-3">
+                <select class="custom-select" id="inputGroupSelect01" placeholder="Adicionar Local"
+                    aria-label="Adicionar Local">
+                    <option selected>Adicionar Local</option>
+                    <option value="1">São Paulo</option>
+                    <option value="2">Minas Gerais</option>
+                    <option value="3">México</option>
+                </select>
+                <input id="qtdDias" type="text" class="form-control" placeholder="Quantidade de Dias"
+                    aria-label="Quantidade de Dias" />
+              <!-- <input id="datepicker" width="270" />--> 
+                <input id="qtdHospedes" type="text" class="form-control" placeholder="Número de Hóspedes"
+                    aria-label="Número de Hóspedes" />
+                <div class="input-group-append">
+                    <button id="pesquisar" class="btn btn-outline-secondary px-3" type="button">&nbsp;&nbsp;<i class="fas fa-search"></i>&nbsp;&nbsp;</button>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end navbar-nav">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -46,7 +51,6 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="contato.html">Contato</a>
                     <a class="nav-item nav-link" href="sobre.html">Sobre</a>
                 </div>
             </div>
@@ -55,7 +59,7 @@
     <div class="container">
         <div id="map"></div>
         </br>
-        <div id="cards" class="row">
+        <div id="cards" class="row no-gutters card-deck">
         </div>
         <nav>
             <ul id="pagination" class="pagination justify-content-center pagination-red">
@@ -77,8 +81,8 @@
         </nav>
     </div>
     <footer class="footer container-fluid border-top">
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-lg-4">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-12 col-lg-4 justify-content-center">
                 <ul class="list-unstyled">
                     <li><img src="images/instagram.png" />&nbsp;
                         <a class="text-dark" href="https://www.instagram.com/vivismarrie/">@vivismarrie</a></li>
@@ -89,34 +93,61 @@
                 </ul>
 
             </div>
-            <div class="col-sm-12 col-lg-4">
+            <div class="col-sm-12 col-lg-4 text-center">
                 <img src="images/kitkat.png" /><br />
                 Desenvolvido por Viviane para o desafio da Gama Academy - Hiring Coders
             </div>
             <div class="col-sm-12 col-lg-4">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Insira seu email aqui" aria-label="Insira seu email aqui">
+                <div class="col-sm-12 col-lg-6 ml-auto"> 
+                    <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Insira seu email aqui"
+                        aria-label="Insira seu email aqui">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-success" type="button">Enviar</button>
+                        <button class="btn btn-outline-success" type="button">Enviar</button>
                     </div>
-                  </div>
+                </div>
+            </div>
             </div>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-        <script src="scripts.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaFk5VnjfifE28TQBw1lPuO8ngWFnEdNU&callback=initMap"
-        async defer></script> 
+    <div class="modal fade" id="modalCard" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalTitle"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid px-0">
+                        <div class="row mx-0 no-gutters justify-content-center">
+                            <div class="col-sm-12 col-lg-7 px-0 w-100">
+                                <div id="cardImageModal" class="col-sm-12 col-lg-12 px-0 w-100"></div>
+                                <div class="embed-responsive embed-responsive-4by3">
+                                    <div id="mapModal" class="col-sm-12 col-lg-12 embed-responsive-item"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-5">
+                                <div id="cardContentModal" class="col-sm-12 col-lg-12"></div>
+
+                             </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <script src="scripts.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaFk5VnjfifE28TQBw1lPuO8ngWFnEdNU&callback=initMap"
+        async defer></script>
 </body>
 
 </html>

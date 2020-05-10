@@ -1,34 +1,51 @@
 body {
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
-   /* background-color: rgb(150, 176, 204);
-    margin-top: 2%;
-    margin-right: 10%;
-    margin-left: 10%;*/
+    font-family: Noto Sans, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
 }
 
 #logo {
-        font-family: Tw Cen MT;
         color: rgb(255, 56, 92) !important;
-        
+        font-weight: bold;
+        font-family: 'Alata';        
 }
 
-.padding {
+.card {
 margin-bottom: 16px;
-padding-right: 8px;
-padding-left: 8px;
+margin-right: 8px;
+margin-left: 8px;
 }
 
 .card-body {
-    padding: 1rem;
+    padding: 0.8rem;
 }     
 
 footer{
     margin-top: 10px;
-    /*padding: 12px;*/
-   /* background-color: lightgrey;*/
+    padding: 15px;
 }
 
 #map {
-    height: 400px;  /* The height is 400 pixels */
-    width: 100%;  /* The width is the width of the web page */
+    height: 350px;
+    width: 100%;
+   }
+
+#mapModal {
+    height: 100%; 
+    width: 100%; 
+   }
+
+.fa-star, .fa-search{
+color: rgb(255, 56, 92);
+}
+.btn-pink {
+    color: #fff;
+    background-color: rgb(255, 56, 92);
+    border-color: rgb(255, 56, 92);
+}
+
+.search {
+    padding-top: 20px;;
+}
+
+#foto{
+    border-radius: 50%;
    }
