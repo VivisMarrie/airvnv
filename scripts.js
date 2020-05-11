@@ -4,8 +4,8 @@ const url = 'https://v2-api.sheety.co/33ddb6f9591aa44f82386f033548141d/airvnv/ai
 var dados;
 var currentPage = 1;
 var totalPage;
-var qtdHospedes = 0;
-var qtdDias = 0;
+var qtdHospedes = "";
+var qtdDias = "";
 
 const getvals = async function () {
     return await fetch(url)
@@ -71,14 +71,14 @@ function showPage(page) {
             badge = ` <span class="badge badge-dark">${data.tag}</span>`;
         }
         let totalizador = "";
-        if(qtdHospedes != null && qtdDias != null){
+        if (qtdHospedes != "" && qtdDias != "") {
             let total = qtdHospedes * qtdDias * data.price;
             totalizador = `<span class="float-right"><small class="text-muted">Total: <b>R$ ${total}</b></small></span>`;
         }
-        card.className = "col-sm-12 col-lg-4";
-        card.innerHTML = `     
-        <div class="card m-2">     
-            <img class="card-img-top img-fluid" src="${photo}" alt="${data.name}"/>
+        card.className = "col-sm-12 col-lg-4 p-2";
+        card.innerHTML = `    
+        <div class="card h-100"> 
+            <img class="card-img-top img-fluid w-100" src="${photo}" alt="${data.name}"/>
             <div class="card-body">
                 <p class="card-text">${badge}<small class="text-muted"> ${data.propertyType}</small>
                 <small><span class="float-right"><i class="fas fa-star"></i>
@@ -87,7 +87,6 @@ function showPage(page) {
                 <p class="card-text"><small><b>R$ ${data.price}</b>/Noite</small>${totalizador}</p>
                 <a id="cardlink-${data.id}" data-toggle="modal" data-target="#modalCard" href="" class="stretched-link"></a>
             </div>
-        </div> 
         </div>   
             
         `;
@@ -165,17 +164,11 @@ $('#modalCard').on('show.bs.modal', function (e) {
         controlSize: 25,
     });
 
-    var marker = new google.maps.Marker({
+    var markerMap = new google.maps.Marker({
         position: pos,
         label: dado.name,
         map: mapModal
     });
-
-    google.maps.event.addListener(marker, "click", function () {
-        mapModal.panTo(this.getPosition());
-        mapModal.setZoom(5);
-    });
-
 
 });
 
@@ -204,7 +197,6 @@ $("#previous-page").on("click", function () {
 
 var map;
 
-// Initialize and add the map
 function initMap() {
     var brazil = new google.maps.LatLng(-11.067796, -52.896404);
     var map = new google.maps.Map(
@@ -215,27 +207,50 @@ function initMap() {
         controlSize: 32
     });
 
+
     getvals().then(response => {
         for (var i = 0; i < response.length; i++) {
-
-            var lat = response[i].lat;
-            var lng = response[i].lng;
+            dado = response[i];
+            var lat = dado.lat;
+            var lng = dado.lng;
 
             var latLng = { lat: lat, lng: lng };
 
             var marker = new google.maps.Marker({
                 position: latLng,
-                // label: response[i].name,
                 map: map
             });
-            google.maps.event.addListener(marker, "click", function () {
-                map.panTo(this.getPosition());
-                map.setZoom(5);
+
+            var contentString = `
+        <div class="container">
+            <div class="row">
+                <div class="col-6 p-0">
+                    <img class="img-fluid" src="${dado.photo}" style="width: 10rem;height: 8rem;" alt="${dado.name}"/>  
+                </div>
+                <div class="col-6 p-1">
+                     <h5>${dado.name}</h5>
+                    <span>R$${dado.price}<small> por noite </small></span>
+                    <div class="w-100"></div>
+                    <span ><i class="fas fa-star"></i>
+                    ${dado.score} <small class="text-muted">(155 comentários)</small></span>                
+                </div>  
+            </div>    
+        </div>`;
+
+            var infowindow = new google.maps.InfoWindow({
+                maxWidth: 370,
             });
+
+            google.maps.event.addListener(marker, 'click', (function (marker, contentString, infowindow) {
+                return function () {
+                    map.panTo(this.getPosition());
+                    map.setZoom(13);
+                    infowindow.setContent(contentString);
+                    infowindow.open(map, marker);
+                };
+            })(marker, contentString, infowindow));
         }
     });
-
-
 }
 
 
